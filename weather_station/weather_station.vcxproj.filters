@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\user_main.c" />
+    <ClCompile Include="src\www\index_html.c">
+      <Filter>www</Filter>
+    </ClCompile>
+    <ClCompile Include="src\www\webpages.c">
+      <Filter>www</Filter>
+    </ClCompile>
+    <ClCompile Include="src\www\website.c">
+      <Filter>www</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\user_config.h" />
+    <ClInclude Include="src\www\webpages.h">
+      <Filter>www</Filter>
+    </ClInclude>
+    <ClInclude Include="src\www\website.h">
+      <Filter>www</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="www">
+      <UniqueIdentifier>{640202c7-7e83-4ac2-babe-9530de5200bc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
