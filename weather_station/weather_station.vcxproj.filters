@@ -26,10 +26,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />
+    <None Include="src\www\html\index.html">
+      <Filter>www\html</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="www">
       <UniqueIdentifier>{640202c7-7e83-4ac2-babe-9530de5200bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="www\html">
+      <UniqueIdentifier>{31f4ab65-d536-4c21-8e7a-ac63999c3d02}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

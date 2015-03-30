@@ -60,6 +60,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="Makefile" />
+    <None Include="src\www\html\index.html" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\httpserver-netconn.c" />
