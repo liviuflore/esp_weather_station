@@ -44,8 +44,8 @@
     <NMakeOutput>$(ProjectDir)\build</NMakeOutput>
     <OutDir>build\$(Configuration)\</OutDir>
     <IntDir>build\$(Configuration)\</IntDir>
-    <ExecutablePath>D:\_code\esp\toolkit;$(ExecutablePath)</ExecutablePath>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);D:\_code\esp\toolkit</IncludePath>
+    <ExecutablePath>$(ProjectDir);$(ExecutablePath)</ExecutablePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakeBuildCommandLine>espmake</NMakeBuildCommandLine>

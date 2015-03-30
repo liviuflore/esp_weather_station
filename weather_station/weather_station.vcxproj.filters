@@ -11,6 +11,7 @@
     <ClCompile Include="src\www\website.c">
       <Filter>www</Filter>
     </ClCompile>
+    <ClCompile Include="src\httpserver-netconn.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\user_config.h" />
@@ -20,6 +21,8 @@
     <ClInclude Include="src\www\website.h">
       <Filter>www</Filter>
     </ClInclude>
+    <ClInclude Include="src\debug.h" />
+    <ClInclude Include="src\httpserver-netconn.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Makefile" />
