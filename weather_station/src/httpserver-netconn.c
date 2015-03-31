@@ -7,7 +7,7 @@
 
 #if LWIP_NETCONN
 
-#define WWW_TX_BUFFER_LENGTH 4096
+#define WWW_TX_BUFFER_LENGTH 10240
 char http_server_tx_buffer[WWW_TX_BUFFER_LENGTH];
 
 /** Get URI from request */
