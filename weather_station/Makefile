@@ -8,7 +8,7 @@
 #   Added TOOLKIT_DIR as a common base for all ESP related stuff
 #   TOOLKIT_DIR must be set as enviroment variable before calling make
 #
-#   
+#
 #
 # Base projects directory, shoud be set in enviroment
 #TOOLKIT_DIR	= D:\_code\esp\toolkit
