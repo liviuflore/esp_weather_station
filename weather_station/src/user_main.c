@@ -20,6 +20,7 @@
 
 #include "udhcp/dhcpd.h"
 
+#include "debug.h"
 #include "user_config.h"
 #include "httpserver-netconn.h"
 
@@ -28,8 +29,6 @@ struct ip_info ipinfo;
 
 xSemaphoreHandle semConnect = NULL;
 
-void task2 (void *pvParameters);
-void task3 (void *pvParameters);
 
 /******************************************************************************
 * FunctionName : connect_task
@@ -64,7 +63,7 @@ void ICACHE_FLASH_ATTR connect_task (void *pvParameters)
 
             if (!isinit) {                                              // Start the tasks once we have our IP address
                 char *ipptr = (char *)&ipinfo.ip;
-                printf ("Got IP addr [%d.%d.%d.%d]\n", ipptr[0], ipptr[1], ipptr[2], ipptr[3]);
+                ESP_ALW ("Got IP addr [%d.%d.%d.%d]", ipptr[0], ipptr[1], ipptr[2], ipptr[3]);
                 isinit = 1;
                 xFrequency = 6000;                  // Once a minute from now on
                 if (semConnect != NULL)
@@ -72,11 +71,11 @@ void ICACHE_FLASH_ATTR connect_task (void *pvParameters)
             }
         }
         else {                                      // Lost our connection?
-            printf ("Waiting for IP address [connect status %d] - %d\n", connect_status, cnt);
+            ESP_DBG ("Waiting for IP address [connect status %d] - %d", connect_status, cnt);
             xFrequency = 1000;                      // Check every 10s
 
             if (cnt++ > 50) {                       // Try to reconnect
-                printf ("Reconnecting...\n");
+                ESP_INF ("Reconnecting...\n");
                 wifi_station_disconnect ();
                 vTaskDelay (100);
                 wifi_station_connect ();
@@ -98,11 +97,9 @@ void main_task (void *pvParameters)
 {
     // Waiting for connect semaphore
     while (xSemaphoreTake (semConnect, portMAX_DELAY) != pdTRUE);
-    printf ("CONNECTED \n");
+    ESP_ALW ("CONNECTED");
 
-    //xTaskCreate(task2, "tsk2", 256, NULL, 2, NULL);
-    //xTaskCreate(task3, "tsk3", 256, NULL, 2, NULL);
-	http_server_netconn_init();
+    http_server_netconn_init();
 
     while (1);
 }
@@ -116,22 +113,18 @@ void main_task (void *pvParameters)
 void ICACHE_FLASH_ATTR
 user_init(void)
 {
-    printf("SDK version:%d.%d.%d\n",
-    		SDK_VERSION_MAJOR,
-    		SDK_VERSION_MINOR,
-    		SDK_VERSION_REVISION);
+    ESP_ALW ("SDK version:%d.%d.%d", SDK_VERSION_MAJOR, SDK_VERSION_MINOR, SDK_VERSION_REVISION);
 
     //memset (&ipinfo, 0, sizeof (ipinfo));
     vSemaphoreCreateBinary (semConnect);
     if (semConnect == NULL) {
-        printf ("failed to create semaphore\n");
+        ESP_ERR ("failed to create semaphore");
         return;
     }
     xSemaphoreTake (semConnect, (portTickType)10);
 
-    printf ("start Connecting task\n");
-
     // start connect task and wait to be connected to AP
+    ESP_INF ("start tasks");
     xTaskCreate (connect_task, "conn", 256, NULL, 2, NULL);
     xTaskCreate (main_task, "main", 256, NULL, 2, NULL);
 }

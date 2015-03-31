@@ -5,18 +5,10 @@
 #else
 #include "esp_common.h"
 #endif
+#include "debug.h"
 #include "website.h"
 #include "webpages.h"
 
-#define WEBSITE_DEBUG
-
-#ifdef WEBSITE_DEBUG
-#define ERRLOG(msg,...)         printf("ERR: [%s][%d] " msg "\n", __FUNCTION__, __LINE__, ##__VA_ARGS__)
-#define DBGLOG(msg,...)         printf("DBG: [%s][%d] " msg "\n", __FUNCTION__, __LINE__, ##__VA_ARGS__)
-#else
-#define ERRLOG(...)
-#define DBGLOG(...)
-#endif
 
 const static char www_html_hdr[] = "HTTP/1.1 200 OK\r\nContent-type: text/html\r\n\r\n";
 const static char www_css_hdr[]  = "HTTP/1.1 200 OK\r\nContent-type: text/css\r\n\r\n";
@@ -34,24 +26,24 @@ int www_get_404_page (char* response)
 
 int www_build_response_from_uri(char* uri, char* response)
 {
-	struct www_webpage* wp = NULL;
-	char* wp_content = NULL;
+    struct www_webpage* wp = NULL;
+    char* wp_content = NULL;
     char* wp_header = NULL;
 
-	if (response == NULL) {
-        ERRLOG ("invalid input params\n");
-		return 0;
-	}
-	if (!strncmp(uri, "/", 1) && strlen(uri) == 1) {
-		wp = www_webpages_get("/index.html");
-	}
-	else {
-		wp = www_webpages_get(uri);
-	}
+    if (response == NULL) {
+        ESP_ERR ("invalid input params");
+        return 0;
+    }
+    if (!strncmp(uri, "/", 1) && strlen(uri) == 1) {
+        wp = www_webpages_get("/index.html");
+    }
+    else {
+        wp = www_webpages_get(uri);
+    }
 
-	if (wp == NULL) {
+    if (wp == NULL) {
         return www_get_404_page(response);
-	}
+    }
 
     /* get header based on content type */
     if (strncmp (wp->name + strlen (wp->name) - 4, ".css", 4) == 0) {
@@ -64,29 +56,29 @@ int www_build_response_from_uri(char* uri, char* response)
         wp_header = (char*)www_html_hdr;
     }
 
-	int offset = 0;
-	int len = 0;
+    int offset = 0;
+    int len = 0;
 
     len = strlen (wp_header);
     memcpy (response + offset, wp_header, len);
-	offset += len;
+    offset += len;
 
-	if (wp->action != NULL) {
-		offset += wp->action(wp->page, wp->size, response + offset);
-	}
-	else {
-		memcpy(response + offset, wp->page, strlen(wp->page));
-		offset += strlen(wp->page);
-	}
+    if (wp->action != NULL) {
+        offset += wp->action(wp->page, wp->size, response + offset);
+    }
+    else {
+        memcpy(response + offset, wp->page, strlen(wp->page));
+        offset += strlen(wp->page);
+    }
 
-	response[offset] = '\0';
+    response[offset] = '\0';
 
-	return offset;
+    return offset;
 }
 
 #define WWW_MAX_VAR_NAME
 struct www_variable {
-	char name[32];
+    char name[32];
 
 };
 
@@ -106,7 +98,7 @@ int www_replace_token (char* in, char *out, char* token, char* val, int *out_siz
     int     found = 0;
 
     if (in == NULL || out == NULL || token == NULL || val == NULL || out_size == NULL) {
-        ERRLOG ("invalid input params\n");
+        ESP_ERR ("invalid input params");
         return -1;
     }
 
@@ -130,7 +122,7 @@ int www_replace_token (char* in, char *out, char* token, char* val, int *out_siz
         /* check token len */
         curr_token_len = replace_end - replace_start - token_start_size - token_end_size;
         if (curr_token_len >= TOKENNAMELENGTH) {
-            ERRLOG ("token length is too high (max supporte val %d, val %d)\n", TOKENNAMELENGTH-1, curr_token_len);
+            ESP_ERR ("token length is too high (max supporte val %d, val %d)", TOKENNAMELENGTH - 1, curr_token_len);
             break;
         }
 
@@ -156,7 +148,7 @@ int www_replace_token (char* in, char *out, char* token, char* val, int *out_siz
         char* out2_ptr = (char *)malloc (pt2_size + 1);
 
         if (out1_ptr == NULL || out2_ptr == NULL) {
-            ERRLOG ("malloc failed\n");
+            ESP_ERR ("malloc failed");
             return -1;
         }
 
@@ -203,7 +195,7 @@ int www_rsp_index_html (char* in, int size, char *out)
 
 void www_init_webpages(void)
 {
-	www_webpages_init();
+    www_webpages_init();
 
     www_webpages_register_action ("/index.html", &www_rsp_index_html);
 }
