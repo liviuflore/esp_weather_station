@@ -4,6 +4,9 @@
     <Filter Include="www">
       <UniqueIdentifier>{43782d52-33a2-45ed-b928-14629207a933}</UniqueIdentifier>
     </Filter>
+    <Filter Include="www\html">
+      <UniqueIdentifier>{f9c99114-6807-442b-95a5-08e1d001c8da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\webpages.h">
@@ -33,5 +36,21 @@
     <ClCompile Include="..\..\skeleton_css.c">
       <Filter>www</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\html\favicon.png">
+      <Filter>www\html</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\html\index.html">
+      <Filter>www\html</Filter>
+    </None>
+    <None Include="..\..\html\normalize.css">
+      <Filter>www\html</Filter>
+    </None>
+    <None Include="..\..\html\skeleton.css">
+      <Filter>www\html</Filter>
+    </None>
   </ItemGroup>
 </Project>
