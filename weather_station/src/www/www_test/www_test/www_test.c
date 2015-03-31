@@ -27,12 +27,6 @@ int main(int argc, char* argv[])
     printf ("initializing pages\n");
     www_init_webpages ();
 
-    printf ("Requested: %s\n", uri);
-    page_size = www_build_response_from_uri (uri, http_server_tx_buffer);
-    printf ("Send page (size %d):\n%s\n\n", page_size, http_server_tx_buffer);
-
-    //getchar ();
-
     printf ("Listen HTTP connections on %d\n", HTTP_PORT);
     int ret = minihttpd_listen (HTTP_PORT);
     printf ("Stopped. ret %d\n", ret);

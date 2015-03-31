@@ -52,7 +52,7 @@ http_server_netconn_serve(struct netconn *conn)
 			printf("Requested: %s\n", uri);
 
 			page_size = www_build_response_from_uri(uri, http_server_tx_buffer);
-			printf("Send page: %s\n", http_server_tx_buffer);
+			//printf("Send page: %s\n", http_server_tx_buffer);
 
 			if (page_size > 0) {
 				netconn_write(conn, http_server_tx_buffer, page_size, NETCONN_COPY);
