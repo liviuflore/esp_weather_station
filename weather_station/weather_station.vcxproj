@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{FF9BB59F-4FFB-4AC6-B00D-5AB1462BCA9F}</ProjectGuid>
     <Keyword>MakeFileProj</Keyword>
-    <ProjectName>test1</ProjectName>
+    <ProjectName>WeatherStation</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -40,7 +40,7 @@
     <NMakeBuildCommandLine>espmake.cmd $(MSBuildProjectName)</NMakeBuildCommandLine>
     <NMakeCleanCommandLine>espmake.cmd $(MSBuildProjectName) clean</NMakeCleanCommandLine>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeIncludeSearchPath>esp_iot_rtos_sdk\include\espressif;esp_iot_rtos_sdk\include\lwip;esp_iot_rtos_sdk\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath>%TOOLKIT_DIR%\esp_iot_rtos_sdk\include\espressif;%TOOLKIT_DIR%\esp_iot_rtos_sdk\include\lwip;%TOOLKIT_DIR%\esp_iot_rtos_sdk\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
     <NMakeOutput>$(ProjectDir)\build</NMakeOutput>
     <OutDir>build\$(Configuration)\</OutDir>
     <IntDir>build\$(Configuration)\</IntDir>
