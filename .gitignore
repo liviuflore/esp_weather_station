@@ -56,6 +56,9 @@ Temporary Items
 # compile output
 *.obj
 *.out
+*.o
+*.bin
+*.a
 www_test.exe
 
 # generated web source files
