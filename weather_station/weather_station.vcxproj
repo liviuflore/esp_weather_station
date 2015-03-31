@@ -61,6 +61,8 @@
   <ItemGroup>
     <None Include="Makefile" />
     <None Include="src\www\html\index.html" />
+    <None Include="src\www\html\normalize.css" />
+    <None Include="src\www\html\skeleton.css" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\httpserver-netconn.c" />
@@ -75,6 +77,9 @@
     <ClInclude Include="src\user_config.h" />
     <ClInclude Include="src\www\webpages.h" />
     <ClInclude Include="src\www\website.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\www\html\favicon.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
