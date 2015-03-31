@@ -19,12 +19,24 @@
 #endif
 
 const static char www_html_hdr[] = "HTTP/1.1 200 OK\r\nContent-type: text/html\r\n\r\n";
+const static char www_css_hdr[]  = "HTTP/1.1 200 OK\r\nContent-type: text/css\r\n\r\n";
+const static char www_png_hdr[]  = "HTTP/1.1 200 OK\r\nContent-type: image/png\r\n\r\n";
+
 const static char www_404_html[] = "<html><head><title>404</title></head><body><h1>404</h1><p>Page not found</p></body></html>";
+
+int www_get_404_page (char* response)
+{
+    memcpy (response, www_html_hdr, sizeof (www_html_hdr));
+    memcpy (response + sizeof (www_html_hdr), www_404_html, sizeof (www_404_html));
+    response[sizeof (www_html_hdr) + sizeof (www_404_html)] = '\0';
+    return (sizeof (www_html_hdr) + sizeof (www_404_html));
+}
 
 int www_build_response_from_uri(char* uri, char* response)
 {
 	struct www_webpage* wp = NULL;
 	char* wp_content = NULL;
+    char* wp_header = NULL;
 
 	if (response == NULL) {
         ERRLOG ("invalid input params\n");
@@ -38,17 +50,25 @@ int www_build_response_from_uri(char* uri, char* response)
 	}
 
 	if (wp == NULL) {
-		memcpy(response, www_html_hdr, sizeof(www_html_hdr));
-		memcpy(response + sizeof(www_html_hdr), www_404_html, sizeof(www_404_html));
-		response[sizeof(www_html_hdr) + sizeof(www_404_html)] = '\0';
-		return (sizeof(www_html_hdr) + sizeof(www_404_html));
+        return www_get_404_page(response);
 	}
+
+    /* get header based on content type */
+    if (strncmp (wp->name + strlen (wp->name) - 4, ".css", 4) == 0) {
+        wp_header = (char*)www_css_hdr;
+    }
+    else if (strncmp (wp->name + strlen (wp->name) - 4, ".png", 4) == 0) {
+        wp_header = (char*)www_png_hdr;
+    }
+    else {
+        wp_header = (char*)www_html_hdr;
+    }
 
 	int offset = 0;
 	int len = 0;
 
-	len = strlen(www_html_hdr);
-	memcpy(response + offset, www_html_hdr, len);
+    len = strlen (wp_header);
+    memcpy (response + offset, wp_header, len);
 	offset += len;
 
 	if (wp->action != NULL) {
