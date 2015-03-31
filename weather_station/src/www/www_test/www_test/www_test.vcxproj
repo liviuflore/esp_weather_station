@@ -83,7 +83,10 @@
     <ClInclude Include="..\..\website.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\favicon_png.c" />
     <ClCompile Include="..\..\index_html.c" />
+    <ClCompile Include="..\..\normalize_css.c" />
+    <ClCompile Include="..\..\skeleton_css.c" />
     <ClCompile Include="..\..\webpages.c" />
     <ClCompile Include="..\..\website.c" />
     <ClCompile Include="www_test.c">

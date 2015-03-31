@@ -24,5 +24,14 @@
       <Filter>www</Filter>
     </ClCompile>
     <ClCompile Include="www_test.c" />
+    <ClCompile Include="..\..\favicon_png.c">
+      <Filter>www</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\normalize_css.c">
+      <Filter>www</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\skeleton_css.c">
+      <Filter>www</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
