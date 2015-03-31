@@ -92,8 +92,7 @@ void ICACHE_FLASH_ATTR connect_task (void *pvParameters)
 * Parameters   : none
 * Returns      : none
 *******************************************************************************/
-
-void main_task (void *pvParameters)
+void ICACHE_FLASH_ATTR main_task (void *pvParameters)
 {
     // Waiting for connect semaphore
     while (xSemaphoreTake (semConnect, portMAX_DELAY) != pdTRUE);
@@ -110,8 +109,7 @@ void main_task (void *pvParameters)
  * Parameters   : none
  * Returns      : none
 *******************************************************************************/
-void ICACHE_FLASH_ATTR
-user_init(void)
+void ICACHE_FLASH_ATTR user_init(void)
 {
     ESP_ALW ("SDK version:%d.%d.%d", SDK_VERSION_MAJOR, SDK_VERSION_MINOR, SDK_VERSION_REVISION);
 
