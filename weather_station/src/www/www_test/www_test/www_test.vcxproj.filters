@@ -45,6 +45,15 @@
     <ClCompile Include="..\..\sensorinfo_html.c">
       <Filter>www</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\home_png.c">
+      <Filter>www</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sensors_png.c">
+      <Filter>www</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\settings2_png.c">
+      <Filter>www</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\html\favicon.png">
