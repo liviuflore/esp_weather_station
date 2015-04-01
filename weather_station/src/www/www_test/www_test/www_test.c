@@ -71,7 +71,7 @@ int minihttpd_connection_serve (SOCKET *conn)
             int page_size = 0;
             printf ("Requested: %s\n", uri);
             page_size = www_build_response_from_uri (uri, http_server_tx_buffer);
-            printf ("Send page: %s\n", http_server_tx_buffer);
+            //printf ("Send page: %s\n", http_server_tx_buffer);
 
             iSendResult = send (*conn, http_server_tx_buffer, page_size, 0);
             if (iSendResult == SOCKET_ERROR) {
@@ -168,7 +168,7 @@ int minihttpd_listen (int portno)
         if (iResult == SOCKET_ERROR) {
             printf ("shutdown failed with error: %d\n", WSAGetLastError ());
             closesocket (ClientSocket);
-            WSACleanup ();
+            continue;
             return 1;
         }
 
