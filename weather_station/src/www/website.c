@@ -24,10 +24,9 @@ int www_get_404_page (char* response)
     return (sizeof (www_html_hdr) + sizeof (www_404_html));
 }
 
-
 int www_build_response_from_uri(char* uri, char* response)
 {
-    char* url = NULL;
+    struct www_webpage* wp = NULL;
     char* wp_content = NULL;
     char* wp_header = NULL;
 
@@ -35,18 +34,22 @@ int www_build_response_from_uri(char* uri, char* response)
         ESP_ERR ("invalid input params");
         return 0;
     }
+    if (!strncmp(uri, "/", 1) && strlen(uri) == 1) {
+        wp = www_webpages_get("/index.html");
+    }
+    else {
+        wp = www_webpages_get(uri);
+    }
 
-    /* get default page */
-    if (!strncmp (uri, "/", 1) && strlen (uri) == 1)
-        url = "/index.html";
-    else
-        url = uri;
+    if (wp == NULL) {
+        return www_get_404_page(response);
+    }
 
     /* get header based on content type */
-    if (strncmp (url + strlen (url) - 4, ".css", 4) == 0) {
+    if (strncmp (wp->name + strlen (wp->name) - 4, ".css", 4) == 0) {
         wp_header = (char*)www_css_hdr;
     }
-    else if (strncmp (url + strlen (url) - 4, ".png", 4) == 0) {
+    else if (strncmp (wp->name + strlen (wp->name) - 4, ".png", 4) == 0) {
         wp_header = (char*)www_png_hdr;
     }
     else {
@@ -60,28 +63,14 @@ int www_build_response_from_uri(char* uri, char* response)
     memcpy (response + offset, wp_header, len);
     offset += len;
 
-    if (!strncmp (url + strlen (url) - 4, ".var", 4)) {
-        //wp = www_variable_get (url);
-        memcpy (response + offset, "N/A", sizeof ("N/A"));
-        offset += sizeof ("N/A");
+    if (wp->action != NULL) {
+        offset += wp->action(wp->page, wp->size, response + offset);
     }
     else {
-        struct www_webpage* wp = www_webpages_get (url);
-
-        if (wp == NULL) {
-            memcpy (response + offset, www_404_html, sizeof (www_404_html));
-            offset += sizeof (www_404_html);
-        }
-
-        if (wp->action != NULL) {
-            offset += wp->action (wp->page, wp->size, response + offset);
-        }
-        else {
-            len = strlen (wp->page);
-            memcpy (response + offset, wp->page, len);
-            offset += len;
-        }
+        memcpy(response + offset, wp->page, strlen(wp->page));
+        offset += strlen(wp->page);
     }
+
     response[offset] = '\0';
 
     return offset;

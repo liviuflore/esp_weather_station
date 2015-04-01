@@ -36,15 +36,6 @@
     <ClCompile Include="..\..\skeleton_css.c">
       <Filter>www</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\settings_png.c">
-      <Filter>www</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\settings_html.c">
-      <Filter>www</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sensorinfo_html.c">
-      <Filter>www</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\html\favicon.png">
