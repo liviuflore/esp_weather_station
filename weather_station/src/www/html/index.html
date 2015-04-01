@@ -54,25 +54,35 @@
   <!-- Primary Page Layout  ----------------------------------- -->
     <div class="container">
         <!-- HEADER -->
-        <div id="header" class="row" style="margin-right:0">
-            <div class="column" style="margin-top: 5%; width:70%">
-                <div class="row">
-                    <h2 onclick="ReloadDataHome()" style="cursor:pointer;">Weather Station</h2>
-                </div>
-                <div class="row">
-                    <h6>powerd by ESP8266</h6>
-                </div>
-            </div>
-            <div class="column" align="right" style="margin-top: 5%; width:auto; margin-left:0;">
-                <div class="row" style="text-align:center">
-                    <h1 style="color:steelblue">WS</h1>
-                </div>
-                <div class="row" style="text-align:center">
-                    <img border="0" alt="Home" src="home.png" class="mainmenu" onclick="ReloadDataHome()">
-                    <img border="0" alt="Sensors" src="sensors.png" class="mainmenu" onclick="ReloadDataSensorInfo()">
-                    <img border="0" alt="Settings" src="settings.png" class="mainmenu" onclick="ReloadDataSettings()">
-                </div>
-            </div>
+        <div id="header" class="row" style="margin:0 0 0 0; padding: 0 0 0 0;">
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="column" style="margin-top: 5%; display:inline-block;">
+                                <div class="row">
+                                    <h2 onclick="ReloadDataHome()" style="cursor:pointer;">Weather Station</h2>
+                                </div>
+                                <div class="row">
+                                    <h6>powerd by ESP8266</h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td width="120px">
+                            <div class="column" align="right" style="margin:0 0 0 0; margin-top: 5%; display:inline-block;">
+                                <div class="row" style="text-align:center">
+                                    <h1 style="color:steelblue">WS</h1>
+                                </div>
+                                <div class="row" style="text-align:center">
+                                    <img border="0" alt="Home" src="home.png" class="mainmenu" onclick="ReloadDataHome()">
+                                    <img border="0" alt="Sensors" src="sensors.png" class="mainmenu" onclick="ReloadDataSensorInfo()">
+                                    <img border="0" alt="Settings" src="settings.png" class="mainmenu" onclick="ReloadDataSettings()">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <!-- CONTENTS -->
         <div id="contents" class="row"> loading...
