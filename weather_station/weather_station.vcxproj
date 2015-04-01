@@ -40,7 +40,7 @@
     <NMakeBuildCommandLine>espmake.cmd $(MSBuildProjectName)</NMakeBuildCommandLine>
     <NMakeCleanCommandLine>espmake.cmd $(MSBuildProjectName) clean</NMakeCleanCommandLine>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeIncludeSearchPath>%TOOLKIT_DIR%\esp_iot_rtos_sdk\include\espressif;%TOOLKIT_DIR%\esp_iot_rtos_sdk\include\lwip;%TOOLKIT_DIR%\esp_iot_rtos_sdk\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath>$(ProjectDir)..\..\esp_toolkit\esp_iot_rtos_sdk\include\espressif;$(ProjectDir)..\..\esp_toolkit\esp_iot_rtos_sdk\include\lwip;$(ProjectDir)..\..\esp_toolkit\esp_iot_rtos_sdk\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
     <NMakeOutput>$(ProjectDir)\build</NMakeOutput>
     <OutDir>build\$(Configuration)\</OutDir>
     <IntDir>build\$(Configuration)\</IntDir>

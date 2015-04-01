@@ -92,7 +92,6 @@
     <ClCompile Include="..\..\normalize_css.c" />
     <ClCompile Include="..\..\sensorinfo_html.c" />
     <ClCompile Include="..\..\sensors_png.c" />
-    <ClCompile Include="..\..\settings2_png.c" />
     <ClCompile Include="..\..\settings_html.c" />
     <ClCompile Include="..\..\settings_png.c" />
     <ClCompile Include="..\..\skeleton_css.c" />
