@@ -2,65 +2,68 @@
 <html lang="en">
 <head>
 
-  <!-- Basic Page Needs
-  -------------------------------------------------- -->
+  <!-- Basic Page Needs  -------------------------------------- -->
   <meta charset="utf-8">
   <title>ESP WeatherStation</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <!-- Mobile Specific Metas
-  -------------------------------------------------- -->
+  <!-- Mobile Specific Metas  --------------------------------- -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- FONT
-  -------------------------------------------------- -->
+  <!-- FONT  -------------------------------------------------- -->
   <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
 
-  <!-- CSS
-  -------------------------------------------------- -->
+  <!-- CSS  --------------------------------------------------- -->
   <link rel="stylesheet" href="normalize.css">
   <link rel="stylesheet" href="skeleton.css">
 
-  <!-- Favicon
-  -------------------------------------------------- -->
+  <!-- Favicon  ----------------------------------------------- -->
   <link rel="icon" type="image/png" href="favicon.png">
 
 </head>
 <body>
 
-  <!-- Primary Page Layout
-  -------------------------------------------------- -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            ReloadDataSensorInfo()
+        });
+        function ReloadDataSensorInfo() {
+            $("#contents").load("/sensorinfo.html", function () { });
+        }
+        function ReloadDataSettings() {
+            $("#contents").load("/settings.html", function () { });
+        }
+
+    </script>
+
+  <!-- Primary Page Layout  ----------------------------------- -->
     <div class="container">
-        <div class="row">
-            <div class="nine columns" style="margin-top: 5%">
-                <h3>Weather Station</h3>
-                <h6>powerd by ESP8266</h6>
+        <!-- HEADER -->
+        <div id="header" class="row" style="margin-right:0">
+            <div class="column" style="margin-top: 5%; width:80%">
+                <div class="row">
+                    <h2 onclick="ReloadDataSensorInfo()" style="cursor:pointer;">Weather Station</h2>
+                </div>
+                <div class="row">
+                    <h6>powerd by ESP8266</h6>
+                </div>
             </div>
-            <div class="two columns" style="margin-top: 5%">
-                <h1>WS</h1>
+            <div class="column" align="right" style="margin-top: 5%; width:auto; margin-left:0;">
+                <div class="row" style="text-align:center">
+                    <h1 style="color:steelblue">WS</h1>
+                </div>
+                <div class="row" style="text-align:center">
+                    <img border="0" alt="Settings" src="settings.png" width="24" height="24" style="cursor:pointer;" onclick="ReloadDataSettings()">
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="u-full-width column" style="margin-top: 5%">
-                <h5>Sensor information</h5>
-                <table class="u-full-width">
-                    <tbody>
-                        <tr>
-                            <td width="80%">Temperature</td>
-                            <td><h4>26&deg;C</h4></td>
-                        </tr>
-                        <tr>
-                            <td>Humidity</td>
-                            <td><h4>42%</h4></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <!-- CONTENTS -->
+        <div id="contents" class="row"> loading...
         </div>
     </div>
 
-<!-- End Document
-  -------------------------------------------------- -->
+<!-- End Document  -------------------------------------------- -->
 </body>
 </html>

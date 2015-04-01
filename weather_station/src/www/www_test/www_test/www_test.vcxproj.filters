@@ -52,5 +52,11 @@
     <None Include="..\..\html\skeleton.css">
       <Filter>www\html</Filter>
     </None>
+    <None Include="..\..\html\settings.html">
+      <Filter>www\html</Filter>
+    </None>
+    <None Include="..\..\html\sensorinfo.html">
+      <Filter>www\html</Filter>
+    </None>
   </ItemGroup>
 </Project>
