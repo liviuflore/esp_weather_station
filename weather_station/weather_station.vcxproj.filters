@@ -35,6 +35,12 @@
     <None Include="src\www\html\skeleton.css">
       <Filter>www\html</Filter>
     </None>
+    <None Include="src\www\html\sensorinfo.html">
+      <Filter>www\html</Filter>
+    </None>
+    <None Include="src\www\html\settings.html">
+      <Filter>www\html</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="www">
