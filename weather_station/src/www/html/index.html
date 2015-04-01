@@ -27,16 +27,29 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-            ReloadDataSensorInfo()
+            ReloadDataHome()
         });
+        function ReloadDataHome() {
+            $("#contents").html("<br><br>Click on a Menu Icon");
+        }
         function ReloadDataSensorInfo() {
             $("#contents").load("/sensorinfo.html", function () { });
         }
         function ReloadDataSettings() {
             $("#contents").load("/settings.html", function () { });
         }
-
     </script>
+    <style type="text/css">
+        .mainmenu {
+            width:32px;
+            height:32px;
+            cursor:pointer;
+            -webkit-filter:opacity(50%);
+        }
+        .mainmenu:hover {
+            -webkit-filter:opacity(90%);
+        }
+    </style>
 
   <!-- Primary Page Layout  ----------------------------------- -->
     <div class="container">
@@ -44,7 +57,7 @@
         <div id="header" class="row" style="margin-right:0">
             <div class="column" style="margin-top: 5%; width:80%">
                 <div class="row">
-                    <h2 onclick="ReloadDataSensorInfo()" style="cursor:pointer;">Weather Station</h2>
+                    <h2 onclick="ReloadDataHome()" style="cursor:pointer;">Weather Station</h2>
                 </div>
                 <div class="row">
                     <h6>powerd by ESP8266</h6>
@@ -55,9 +68,9 @@
                     <h1 style="color:steelblue">WS</h1>
                 </div>
                 <div class="row" style="text-align:center">
-                    <img border="0" alt="Home" src="home.png" width="24" height="24" style="cursor:pointer; -webkit-filter:opacity(50%);" onclick="ReloadDataSensorInfo()">
-                    <img border="0" alt="Sensors" src="sensors.png" width="24" height="24" style="cursor:pointer; -webkit-filter:opacity(50%);" onclick="ReloadDataSensorInfo()">
-                    <img border="0" alt="Settings" src="settings.png" width="24" height="24" style="cursor:pointer; -webkit-filter:opacity(50%);" onclick="ReloadDataSettings()">
+                    <img border="0" alt="Home" src="home.png" class="mainmenu" onclick="ReloadDataHome()">
+                    <img border="0" alt="Sensors" src="sensors.png" class="mainmenu" onclick="ReloadDataSensorInfo()">
+                    <img border="0" alt="Settings" src="settings.png" class="mainmenu" onclick="ReloadDataSettings()">
                 </div>
             </div>
         </div>
