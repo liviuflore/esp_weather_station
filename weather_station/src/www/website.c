@@ -71,14 +71,14 @@ int www_build_response_from_uri(char* uri, char* response)
             memcpy (response + offset, www_404_html, sizeof (www_404_html));
             offset += sizeof (www_404_html);
         }
-
-        if (wp->action != NULL) {
-            offset += wp->action (wp->page, wp->size, response + offset);
-        }
         else {
-            len = strlen (wp->page);
-            memcpy (response + offset, wp->page, len);
-            offset += len;
+            if (wp->action != NULL) {
+                offset += wp->action (wp->page, wp->size, response + offset);
+            }
+            else {
+                memcpy (response + offset, wp->page, wp->size);
+                offset += wp->size;
+            }
         }
     }
     response[offset] = '\0';
