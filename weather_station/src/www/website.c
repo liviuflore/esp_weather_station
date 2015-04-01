@@ -12,7 +12,7 @@
 
 const static char www_html_hdr[] = "HTTP/1.1 200 OK\r\nContent-type: text/html\r\n\r\n";
 const static char www_css_hdr[]  = "HTTP/1.1 200 OK\r\nContent-type: text/css\r\n\r\n";
-const static char www_png_hdr[]  = "HTTP/1.1 200 OK\r\nContent-type: image/png\r\nContent-Length: 1129\r\nAccept-Ranges: bytes\r\n\r\n";
+const static char www_png_hdr[]  = "HTTP/1.1 200 OK\r\nContent-type: image/png\r\n\r\n";
 
 const static char www_404_html[] = "<html><head><title>404</title></head><body><h1>404</h1><p>Page not found</p></body></html>";
 
