@@ -16,13 +16,6 @@ const static char www_png_hdr[]  = "HTTP/1.1 200 OK\r\nContent-type: image/png\r
 
 const static char www_404_html[] = "<html><head><title>404</title></head><body><h1>404</h1><p>Page not found</p></body></html>";
 
-int www_get_404_page (char* response)
-{
-    memcpy (response, www_html_hdr, sizeof (www_html_hdr) - 1);
-    memcpy (response + sizeof (www_html_hdr) - 1, www_404_html, sizeof (www_404_html) - 1);
-    response[sizeof (www_html_hdr) + sizeof (www_404_html) - 2] = '\0';
-    return (sizeof (www_html_hdr) + sizeof (www_404_html) - 2);
-}
 
 int www_build_response_from_uri(char* uri, char* response)
 {
