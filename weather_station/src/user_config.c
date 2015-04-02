@@ -14,6 +14,7 @@
 #include "esp_common.h"
 #endif
 #include "debug.h"
+#include "user_config.h"
 
 struct u_config esp_config = { 0 };
 
