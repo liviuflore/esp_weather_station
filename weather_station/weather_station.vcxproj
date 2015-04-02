@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\httpserver-netconn.c" />
+    <ClCompile Include="src\user_config.c" />
     <ClCompile Include="src\user_main.c" />
     <ClCompile Include="src\www\index_html.c" />
     <ClCompile Include="src\www\webpages.c" />

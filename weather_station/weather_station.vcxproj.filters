@@ -12,6 +12,7 @@
       <Filter>www</Filter>
     </ClCompile>
     <ClCompile Include="src\httpserver-netconn.c" />
+    <ClCompile Include="src\user_config.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\user_config.h" />

@@ -15,6 +15,9 @@
     <ClInclude Include="..\..\website.h">
       <Filter>www</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\user_config.h">
+      <Filter>www</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\index_html.c">
@@ -49,6 +52,9 @@
       <Filter>www</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sensors_png.c">
+      <Filter>www</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\user_config.c">
       <Filter>www</Filter>
     </ClCompile>
   </ItemGroup>
