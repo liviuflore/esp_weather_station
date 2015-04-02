@@ -1,11 +1,11 @@
 <script>
         $(document).ready(function () {
-            ReloadData()
-            setInterval(function () { ReloadData() }, 5000);
+            ReloadSensorsVars()
+            //setInterval(function () { ReloadSensorsVars() }, 5000);
         });
-        function ReloadData() {
-            $("#temperature").load("/temperature.var", function () { });
-            $("#humidity").load("/humidity.var", function () { });
+        function ReloadSensorsVars() {
+            LoadVarToContent("/temperature.var", 'temperature');
+            LoadVarToContent("/humidity.var", 'humidity');
         }
 </script>
 <div class="u-full-width column" style="margin-top: 5%;margin-left:0;">

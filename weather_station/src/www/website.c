@@ -18,10 +18,10 @@ const static char www_404_html[] = "<html><head><title>404</title></head><body><
 
 int www_get_404_page (char* response)
 {
-    memcpy (response, www_html_hdr, sizeof (www_html_hdr));
-    memcpy (response + sizeof (www_html_hdr), www_404_html, sizeof (www_404_html));
-    response[sizeof (www_html_hdr) + sizeof (www_404_html)] = '\0';
-    return (sizeof (www_html_hdr) + sizeof (www_404_html));
+    memcpy (response, www_html_hdr, sizeof (www_html_hdr) - 1);
+    memcpy (response + sizeof (www_html_hdr) - 1, www_404_html, sizeof (www_404_html) - 1);
+    response[sizeof (www_html_hdr) + sizeof (www_404_html) - 2] = '\0';
+    return (sizeof (www_html_hdr) + sizeof (www_404_html) - 2);
 }
 
 int www_build_response_from_uri(char* uri, char* response)
@@ -36,8 +36,12 @@ int www_build_response_from_uri(char* uri, char* response)
     }
 
     /* get default page */
-    if (!strncmp (uri, "/", 1) && strlen (uri) == 1)
+    if (strncmp (uri, "/", 1) == 0 && strlen (uri) == 1)
         url = "/index.html";
+    else if (strncmp (uri, "action?", 7) == 0) {
+        url = "/index.html";
+        /* parse actions */
+    }
     else
         url = uri;
 
@@ -61,15 +65,15 @@ int www_build_response_from_uri(char* uri, char* response)
 
     if (!strncmp (url + strlen (url) - 4, ".var", 4)) {
         //wp = www_variable_get (url);
-        memcpy (response + offset, "N/A", sizeof ("N/A"));
-        offset += sizeof ("N/A");
+        memcpy (response + offset, "N/A", sizeof ("N/A") - 1);
+        offset += sizeof ("N/A") - 1;
     }
     else {
         struct www_webpage* wp = www_webpages_get (url);
 
         if (wp == NULL) {
-            memcpy (response + offset, www_404_html, sizeof (www_404_html));
-            offset += sizeof (www_404_html);
+            memcpy (response + offset, www_404_html, sizeof (www_404_html) - 1);
+            offset += sizeof (www_404_html) - 1;
         }
         else {
             if (wp->action != NULL) {
@@ -201,7 +205,7 @@ void www_init_webpages(void)
 {
     www_webpages_init();
 
-    www_webpages_register_action ("/index.html", &www_rsp_index_html);
+    //www_webpages_register_action ("/index.html", &www_rsp_index_html);
 }
 
 

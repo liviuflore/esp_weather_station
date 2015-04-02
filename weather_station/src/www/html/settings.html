@@ -1,25 +1,28 @@
-﻿<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script>
+﻿<script>
     $(document).ready(function () {
-        ReloadData()
-        setInterval(function () { ReloadData() }, 5000);
+        ReloadSettingsVars()
     });
-    function ReloadData() {
-        $("#temperature").load("/temperature.var", function () { });
-        $("#humidity").load("/humidity.var", function () { });
+    function ReloadSettingsVars() {
+        LoadVarToValue("/update_interval.var", 'updateInterval');
     }
 </script>
-
 <div class="u-full-width column" style="margin-top: 5%; margin-left:0;">
     <h5>Settings</h5>
-    <table width="100%">
-        <tbody>
-            <tr>
-                <td>Update Interval</td>
-            </tr>
-            <tr>
-                <td>Publish</td>
-            </tr>
-        </tbody>
-    </table>
+    <form action="/action">
+        <table width="100%">
+            <tbody>
+                <tr>
+                    <td width="70%">Update Interval (s)</td>
+                    <td><input id="updateInterval" name="updateInterval" style="text-align:right" class="u-full-width" type="number"></td>
+                </tr>
+                <tr>
+                    <td>Publish</td>
+                    <td>Publish</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align:right">
+            <input type="submit" value="Save">
+        </div>
+    </form>
 </div>

@@ -26,16 +26,33 @@
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>
+        function LoadVarToValue(from, to) {
+            $.get(from, function (data, status) {
+                if (status == "success") {
+                    document.getElementById(to).value = data;
+                }
+            });
+        }
+        function LoadVarToContent(from, to) {
+            $.get(from, function (data, status) {
+                if (status == "success") {
+                    document.getElementById(to).innerHTML = data;
+                }
+            });
+        }
         $(document).ready(function () {
-            ReloadDataHome()
+            ReloadPageHome()
         });
-        function ReloadDataHome() {
+        function GoHome() {
+            window.location = "/index.html";
+        }
+        function ReloadPageHome() {
             $("#contents").html("<br><br>Click on a Menu Icon");
         }
-        function ReloadDataSensorInfo() {
+        function ReloadPageSensorInfo() {
             $("#contents").load("/sensorinfo.html", function () { });
         }
-        function ReloadDataSettings() {
+        function ReloadPageSettings() {
             $("#contents").load("/settings.html", function () { });
         }
     </script>
@@ -61,7 +78,7 @@
                         <td>
                             <div class="column" style="margin-top: 5%; display:inline-block;">
                                 <div class="row">
-                                    <h2 onclick="ReloadDataHome()" style="cursor:pointer;">Weather Station</h2>
+                                    <h2 onclick="GoHome()" style="cursor:pointer;">Weather Station</h2>
                                 </div>
                                 <div class="row">
                                     <h6>powerd by ESP8266</h6>
@@ -74,9 +91,9 @@
                                     <h1 style="color:steelblue">WS</h1>
                                 </div>
                                 <div class="row" style="text-align:center">
-                                    <img border="0" alt="Home" src="home.png" class="mainmenu" onclick="ReloadDataHome()">
-                                    <img border="0" alt="Sensors" src="sensors.png" class="mainmenu" onclick="ReloadDataSensorInfo()">
-                                    <img border="0" alt="Settings" src="settings.png" class="mainmenu" onclick="ReloadDataSettings()">
+                                    <img border="0" alt="Home" src="home.png" class="mainmenu" onclick="ReloadPageHome()">
+                                    <img border="0" alt="Sensors" src="sensors.png" class="mainmenu" onclick="ReloadPageSensorInfo()">
+                                    <img border="0" alt="Settings" src="settings.png" class="mainmenu" onclick="ReloadPageSettings()">
                                 </div>
                             </div>
                         </td>
