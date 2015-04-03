@@ -53,10 +53,12 @@ http_server_netconn_serve(struct netconn *conn)
             ESP_DBG ("Requested: %s", uri);
 
             page_size = www_build_response_from_uri(uri, http_server_tx_buffer);
-            ESP_DBG ("Send page: %s", http_server_tx_buffer);
+            //ESP_DBG ("Send page: %s", http_server_tx_buffer);
 
             if (page_size > 0) {
-                netconn_write(conn, http_server_tx_buffer, page_size, NETCONN_COPY);
+				ESP_DBG("Sending %d bytes", page_size);
+                netconn_write(conn, http_server_tx_buffer, page_size, NETCONN_NOCOPY);
+				ESP_DBG("Sent OK.");
             }
             else{
                 ESP_ERR ("invalid response size");

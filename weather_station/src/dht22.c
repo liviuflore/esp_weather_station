@@ -1,24 +1,12 @@
-#ifdef WIN32
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#else
 #include "esp_common.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/semphr.h"
 #include "gpio.h"
-#endif
 #include "debug.h"
 
 
-#ifdef WIN32
-int DHT_init (void) { return 1; }
-int DHT_get_temp () { return 26; }
-int DHT_get_hum () { return 80; }
-#else
-
-#define DHT_READ_INTERVAL 1000
+#define DHT_READ_INTERVAL 5000
 #define MAXTIMINGS 10000
 #define BREAKTIME 20
 
@@ -77,6 +65,8 @@ static void ICACHE_FLASH_ATTR DHT_read_timeout (void *pvParameters)
 
     int data[100] = { 0 };
 
+	ESP_DBG("start read");
+
     //data[0] = data[1] = data[2] = data[3] = data[4] = 0;
 
     GPIO_OUTPUT_SET (2, 1);
@@ -99,10 +89,13 @@ static void ICACHE_FLASH_ATTR DHT_read_timeout (void *pvParameters)
         i++;
     }
 
-    if (i == 100000)
-        return;
+	if (i == 100000) {
+		ESP_DBG("no sensor detected");
+		return;
+	}
 
     // read data!
+	ESP_DBG("read data");
 
     for (i = 0; i < MAXTIMINGS; i++) {
         counter = 0;
@@ -163,4 +156,3 @@ static void ICACHE_FLASH_ATTR DHT_read_timeout (void *pvParameters)
     }
 }
 
-#endif

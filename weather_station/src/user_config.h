@@ -12,8 +12,8 @@
 
 /* configuration declaration */
 
-#define MYSSID        "myssid"
-#define MYPASSPHRASE  "password"
+#define MYSSID        "skynet"
+#define MYPASSPHRASE  "terminator.3"
 
 #define UC_DECALRE_ALL_VARS                                     \
     UC_VAR (int,    temperature,            0,  0)              \

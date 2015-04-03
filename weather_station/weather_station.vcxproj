@@ -74,6 +74,8 @@
     <ClCompile Include="src\user_config.c" />
     <ClCompile Include="src\user_main.c" />
     <ClCompile Include="src\www\index_html.c" />
+    <ClCompile Include="src\www\normalize_css.c" />
+    <ClCompile Include="src\www\skeleton_css.c" />
     <ClCompile Include="src\www\webpages.c" />
     <ClCompile Include="src\www\website.c" />
   </ItemGroup>

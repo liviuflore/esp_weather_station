@@ -23,9 +23,10 @@
 #include "debug.h"
 #include "user_config.h"
 #include "httpserver-netconn.h"
+#include "dht22.h"
 
 /* Global: Our IP address */
-struct ip_info ipinfo;
+static struct ip_info ipinfo;
 
 xSemaphoreHandle semConnect = NULL;
 
@@ -98,7 +99,8 @@ void ICACHE_FLASH_ATTR main_task (void *pvParameters)
     while (xSemaphoreTake (semConnect, portMAX_DELAY) != pdTRUE);
     ESP_ALW ("CONNECTED");
 
-    http_server_netconn_init();
+    //http_server_netconn_init();
+	DHT_init();
 
     while (1);
 }

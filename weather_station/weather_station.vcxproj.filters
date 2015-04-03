@@ -20,6 +20,12 @@
     <ClCompile Include="src\drivers\uart.c">
       <Filter>drivers</Filter>
     </ClCompile>
+    <ClCompile Include="src\www\skeleton_css.c">
+      <Filter>www</Filter>
+    </ClCompile>
+    <ClCompile Include="src\www\normalize_css.c">
+      <Filter>www</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\user_config.h" />
