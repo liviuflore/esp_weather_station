@@ -67,6 +67,9 @@
     <None Include="src\www\html\skeleton.css" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\dht22.c" />
+    <ClCompile Include="src\drivers\gpio.c" />
+    <ClCompile Include="src\drivers\uart.c" />
     <ClCompile Include="src\httpserver-netconn.c" />
     <ClCompile Include="src\user_config.c" />
     <ClCompile Include="src\user_main.c" />
@@ -76,6 +79,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\debug.h" />
+    <ClInclude Include="src\dht22.h" />
+    <ClInclude Include="src\drivers\gpio.h" />
+    <ClInclude Include="src\drivers\uart.h" />
     <ClInclude Include="src\httpserver-netconn.h" />
     <ClInclude Include="src\user_config.h" />
     <ClInclude Include="src\www\webpages.h" />

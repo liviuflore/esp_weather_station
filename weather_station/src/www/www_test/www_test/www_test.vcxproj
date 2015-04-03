@@ -82,11 +82,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\dht22.h" />
     <ClInclude Include="..\..\..\user_config.h" />
     <ClInclude Include="..\..\webpages.h" />
     <ClInclude Include="..\..\website.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\dht22.c" />
     <ClCompile Include="..\..\..\user_config.c" />
     <ClCompile Include="..\..\favicon_png.c" />
     <ClCompile Include="..\..\home_png.c" />

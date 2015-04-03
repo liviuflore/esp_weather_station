@@ -32,7 +32,7 @@ TARGET		= $(PROJECT_NAME)_app
 BUILD_BASE	= build
 
 # which modules (subdirectories) of the project to include in compiling
-MODULES         = src src/www
+MODULES         = src src/www src/drivers
 EXTRA_INCDIR    = include 
 
 # libraries used in this project, mainly provided by the SDK

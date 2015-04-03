@@ -8,6 +8,7 @@
 #include "debug.h"
 #include "website.h"
 #include "webpages.h"
+#include "dht22.h"
 
 
 const static char www_html_hdr[] = "HTTP/1.1 200 OK\r\nContent-type: text/html\r\n\r\n";
@@ -16,6 +17,19 @@ const static char www_png_hdr[]  = "HTTP/1.1 200 OK\r\nContent-type: image/png\r
 
 const static char www_404_html[] = "<html><head><title>404</title></head><body><h1>404</h1><p>Page not found</p></body></html>";
 
+int www_variable_get (char* url, char* response)
+{
+    if (!strncmp (url, "/temperature.var", sizeof ("/temperature.var") - 1)) {
+        return sprintf (response, "%d", DHT_get_temp());
+    }
+    else if (!strncmp (url, "/humidity.var", sizeof ("/humidity.var") - 1)) {
+        return sprintf (response, "%d", DHT_get_hum ());
+    }
+    else {
+        memcpy (response, "N/A", sizeof ("N/A") - 1);
+        return sizeof ("N/A") - 1;
+    }
+}
 
 int www_build_response_from_uri(char* uri, char* response)
 {
@@ -34,6 +48,7 @@ int www_build_response_from_uri(char* uri, char* response)
     else if (strncmp (uri, "action?", 7) == 0) {
         url = "/index.html";
         /* parse actions */
+        // www_action_set(uri);
     }
     else
         url = uri;
@@ -57,9 +72,7 @@ int www_build_response_from_uri(char* uri, char* response)
     offset += len;
 
     if (!strncmp (url + strlen (url) - 4, ".var", 4)) {
-        //wp = www_variable_get (url);
-        memcpy (response + offset, "N/A", sizeof ("N/A") - 1);
-        offset += sizeof ("N/A") - 1;
+        offset += www_variable_get (url, response + offset);
     }
     else {
         struct www_webpage* wp = www_webpages_get (url);
