@@ -29,6 +29,12 @@ int www_variable_get (char* url, char* response)
     else if (!strncmp (url, "/update_interval.var", sizeof ("/update_interval.var") - 1)) {
         return sprintf (response, "%d", UC_GET_VAR2 (update_interval));
     }
+    else if (!strncmp (url, "/wifi_ssid.var", sizeof ("/wifi_ssid.var") - 1)) {
+        return sprintf (response, "%s", UC_GET_VAR2 (wifi_ssid));
+    }
+    else if (!strncmp (url, "/wifi_pass.var", sizeof ("/wifi_pass.var") - 1)) {
+        return sprintf (response, "%s", UC_GET_VAR2 (wifi_pass));
+    }
     else {
         memcpy (response, "N/A", sizeof ("N/A") - 1);
         return sizeof ("N/A") - 1;

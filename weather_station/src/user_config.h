@@ -9,8 +9,18 @@
 
 #include "debug.h"
 
+
+/* configuration declaration */
+
 #define MYSSID        "myssid"
 #define MYPASSPHRASE  "password"
+
+#define UC_DECALRE_ALL_VARS                                     \
+    UC_VAR (int,    temperature,            0,  0)              \
+    UC_VAR (int,    humidity,               0,  0)              \
+    UC_VAR (int,    update_interval,        0, 60)              \
+    UC_VAR (string, wifi_ssid,              1, "myssid")        \
+    UC_VAR (string, wifi_pass,              1, "password")
 
 
 
@@ -35,15 +45,6 @@ extern xSemaphoreHandle u_config_sem;
 /* configuration declaration */
 
 #define U_CONFIG_VAR_VALUE_MAX      64
-
-#define UC_DECALRE_ALL_VARS                                     \
-    UC_VAR (int,    temperature,            0,  0)              \
-    UC_VAR (int,    humidity,               0,  0)              \
-    UC_VAR (int,    update_interval,        0, 60)              \
-    UC_VAR (string, wifi_ssid,              1, "")              \
-    UC_VAR (string, wifi_pass,              1, "")
-
-
 
 struct u_config_var {
     char* name;

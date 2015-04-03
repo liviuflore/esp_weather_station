@@ -3,7 +3,9 @@
         ReloadSettingsVars()
     });
     function ReloadSettingsVars() {
-        LoadVarToValue("/update_interval.var", 'updateInterval');
+        LoadVarToValue("/update_interval.var", 'update_interval');
+        LoadVarToValue("/wifi_ssid.var", 'wifi_ssid');
+        LoadVarToValue("/wifi_pass.var", 'wifi_pass');
     }
 </script>
 <div class="u-full-width column" style="margin-top: 5%; margin-left:0;">
@@ -12,12 +14,17 @@
         <table width="100%">
             <tbody>
                 <tr>
-                    <td width="70%">Update Interval (s)</td>
-                    <td><input id="updateInterval" name="updateInterval" style="text-align:right" class="u-full-width" type="number"></td>
+                    <td width="70%">SSID</td>
+                    <td><input id="wifi_ssid" name="wifi_ssid" style="text-align:right" class="u-full-width" type="text"></td>
                 </tr>
                 <tr>
-                    <td>Publish</td>
-                    <td>Publish</td>
+                    <td width="70%">Password</td>
+                    <td><input id="wifi_pass" name="wifi_pass" style="text-align:right" class="u-full-width" type="text"></td>
+                </tr>
+
+                <tr>
+                    <td width="70%">Update Interval (s)</td>
+                    <td><input id="update_interval" name="update_interval" style="text-align:right" class="u-full-width" type="number"></td>
                 </tr>
             </tbody>
         </table>

@@ -33,6 +33,8 @@ xSemaphoreHandle u_config_sem = NULL;
     struct u_config_var_##type u_config_var_##name = {#name, save, def};
 UC_DECALRE_ALL_VARS;
 
+struct u_config_var_string u_config_var_wifi_ssid222 = { "wifi_ssid", 1, "myssid" }
+
 void user_config_load (void)
 {
     // load file/ flas and update all vars 
