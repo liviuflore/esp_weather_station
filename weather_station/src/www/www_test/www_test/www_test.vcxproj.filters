@@ -16,7 +16,6 @@
       <Filter>www</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\user_config.h" />
-    <ClInclude Include="..\..\..\dht22.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\index_html.c">
@@ -54,7 +53,6 @@
       <Filter>www</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\user_config.c" />
-    <ClCompile Include="..\..\..\dht22.c" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\html\favicon.png">

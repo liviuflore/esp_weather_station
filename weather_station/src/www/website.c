@@ -8,7 +8,8 @@
 #include "debug.h"
 #include "website.h"
 #include "webpages.h"
-#include "dht22.h"
+#include "user_config.h"
+
 
 
 const static char www_html_hdr[] = "HTTP/1.1 200 OK\r\nContent-type: text/html\r\n\r\n";
@@ -20,10 +21,10 @@ const static char www_404_html[] = "<html><head><title>404</title></head><body><
 int www_variable_get (char* url, char* response)
 {
     if (!strncmp (url, "/temperature.var", sizeof ("/temperature.var") - 1)) {
-        return sprintf (response, "%d", DHT_get_temp());
+        return sprintf (response, "%d", UC_GET_VAR (temperature));
     }
     else if (!strncmp (url, "/humidity.var", sizeof ("/humidity.var") - 1)) {
-        return sprintf (response, "%d", DHT_get_hum ());
+        return sprintf (response, "%d", UC_GET_VAR (humidity));
     }
     else {
         memcpy (response, "N/A", sizeof ("N/A") - 1);
@@ -212,6 +213,13 @@ void www_init_webpages(void)
     www_webpages_init();
 
     //www_webpages_register_action ("/index.html", &www_rsp_index_html);
+
+#ifdef WIN32
+    UC_SET_VAR (temperature, 21);
+    UC_SET_VAR (humidity, 40);
+    UC_SET_VAR_STR (wifi_ssid, "ssid");
+    UC_SET_VAR_STR (wifi_pass, "pass");
+#endif
 }
 
 
