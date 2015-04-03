@@ -21,10 +21,13 @@ const static char www_404_html[] = "<html><head><title>404</title></head><body><
 int www_variable_get (char* url, char* response)
 {
     if (!strncmp (url, "/temperature.var", sizeof ("/temperature.var") - 1)) {
-        return sprintf (response, "%d", UC_GET_VAR (temperature));
+        return sprintf (response, "%d", UC_GET_VAR2 (temperature));
     }
     else if (!strncmp (url, "/humidity.var", sizeof ("/humidity.var") - 1)) {
-        return sprintf (response, "%d", UC_GET_VAR (humidity));
+        return sprintf (response, "%d", UC_GET_VAR2 (humidity));
+    }
+    else if (!strncmp (url, "/update_interval.var", sizeof ("/update_interval.var") - 1)) {
+        return sprintf (response, "%d", UC_GET_VAR2 (update_interval));
     }
     else {
         memcpy (response, "N/A", sizeof ("N/A") - 1);

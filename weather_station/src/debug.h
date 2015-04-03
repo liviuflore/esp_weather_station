@@ -21,7 +21,7 @@
 
 #define ESP_ALW(msg,...)    printf(MODULE_NAME " " msg "\n", __FUNCTION__, __LINE__, ##__VA_ARGS__)
 
-#define ESP_ASSERT(cond)    if (!cond) {printf(MODULE_NAME " ASSERT FAILED! (" #cond ")\n", __FUNCTION__, __LINE__);}
+#define ESP_ASSERT(cond)    if (!(cond)) {printf(MODULE_NAME " ASSERT FAILED! (" #cond ")\n", __FUNCTION__, __LINE__);}
 
 #endif
 
