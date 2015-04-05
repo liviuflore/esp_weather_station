@@ -65,15 +65,19 @@ int minihttpd_connection_serve (SOCKET *conn)
 
     iResult = recv (*conn, recvbuf, recvbuflen, 0);
     if (iResult > 0) {
-        printf ("Bytes received: %d\n", iResult);
+        //printf ("Bytes received: %d\n", iResult);
 
         if (minihttpd_get_uri (recvbuf, recvbuflen, uri)) {
             int page_size = 0;
             printf ("Requested: %s\n", uri);
-            page_size = www_build_response_from_uri (uri, http_server_tx_buffer);
-            //printf ("Send page: %s\n", http_server_tx_buffer);
 
-            iSendResult = send (*conn, http_server_tx_buffer, page_size, 0);
+//            page_size = www_build_response_from_uri (uri, http_server_tx_buffer);
+//            iSendResult = send (*conn, http_server_tx_buffer, page_size, 0);
+
+			char *buff = NULL;
+			page_size = www_get_response_from_uri(uri, &buff);
+			iSendResult = send(*conn, buff, page_size, 0);
+
             if (iSendResult == SOCKET_ERROR) {
                 printf ("send failed with error: %d\n", WSAGetLastError ());
                 return -1;
@@ -139,7 +143,7 @@ int minihttpd_listen (int portno)
     }
 
     while (1) {
-        printf ("listening\n");
+        //printf ("listening\n");
         // Accept a client socket
         ClientSocket = accept (ListenSocket, NULL, NULL);
         if (ClientSocket == INVALID_SOCKET) {
@@ -152,7 +156,7 @@ int minihttpd_listen (int portno)
         // Receive until the peer shuts down the connection
         int res = 0;
         //do {
-            printf ("serve\n");
+            //printf ("serve\n");
             res = minihttpd_connection_serve (&ClientSocket);
             if (res < 0) {
                 printf ("recv failed with error: %d\n", WSAGetLastError ());
@@ -162,7 +166,7 @@ int minihttpd_listen (int portno)
             }
 
         //} while (res > 0);
-        printf ("shutdown client\n");
+        //printf ("shutdown client\n");
         // shutdown the connection since we're done
         iResult = shutdown (ClientSocket, SD_SEND);
         if (iResult == SOCKET_ERROR) {
@@ -173,7 +177,7 @@ int minihttpd_listen (int portno)
         }
 
         // cleanup
-        printf ("close client socket\n");
+        //printf ("close client socket\n");
         closesocket (ClientSocket);
     }
     closesocket (ListenSocket);
