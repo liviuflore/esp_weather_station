@@ -99,8 +99,8 @@ void ICACHE_FLASH_ATTR main_task (void *pvParameters)
     while (xSemaphoreTake (semConnect, portMAX_DELAY) != pdTRUE);
     ESP_ALW ("CONNECTED");
 
-    //http_server_netconn_init();
-	DHT_init();
+    http_server_netconn_init();
+	//DHT_init();
 
     while (1);
 }
