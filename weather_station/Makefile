@@ -18,6 +18,7 @@ XTENSA_TOOLS_ROOT ?= $(TOOLKIT_DIR)\xtensa-lx106-elf\bin
 
 # base directory of the ESP8266 SDK package, absolute
 SDK_BASE	?= $(TOOLKIT_DIR)\esp_iot_rtos_sdk
+#SDK_BASE	?= $(TOOLKIT_DIR)\esp_iot_sdk_1_2_0
 
 #Esptool.py path and port
 ESPTOOL		?= python $(TOOLKIT_DIR)\esptool-py.py
